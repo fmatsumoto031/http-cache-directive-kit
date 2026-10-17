@@ -37,3 +37,10 @@ Real-world `Cache-Control` headers contain quoted-string values (e.g., `no-cache
 PYTHONPATH=src python -m unittest discover -s tests
 node --test test/
 ```
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
